@@ -41,21 +41,23 @@ export default class DatePickerFormElement extends React.Component {
     };
 
     setDate(event, date) {
+        date = date || this.state.date;
 
-        this.props.input.onChange(date.toString());
         this.setState({
             show: Platform.OS === 'ios',
             date,
         });
+
+        this.props.input.onChange(date.toString());
     }
 
     renderDatePicker() {
         return (
             <DateTimePicker value={this.state.date ? this.state.date : new Date()}
-                            {...this.props.picker}
-                            is24Hour={true}
-                            display="default"
-                            onChange={this.setDate}/>
+                                               {...this.props.picker}
+                                               is24Hour={true}
+                                               display="default"
+                                               onChange={this.setDate}/>
         );
     }
 
